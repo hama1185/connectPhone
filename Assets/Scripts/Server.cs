@@ -19,7 +19,7 @@ public class Server : MonoBehaviour {
     // public Text c;
     void Awake() {
         serverName = "IpadAir";
-        inComingPort = 9000;
+        inComingPort = 8000;
         // Debug.Log("server IP : " + serverName + "   port : " + inComingPort);
 
         OSCHandler.Instance.serverInit(serverName,inComingPort); //init OSC　//----------変更
@@ -34,7 +34,6 @@ public class Server : MonoBehaviour {
     }
 
     void LateUpdate(){
-        
         foreach( KeyValuePair<string, ServerLog> item in servers ){
 			// If we have received at least one packet,
 			// show the last received from the log in the Debug console
@@ -43,8 +42,8 @@ public class Server : MonoBehaviour {
                 // b.text = "value get";
 				int lastPacketIndex = item.Value.packets.Count - 1;
                 
-                var value = item.Value.packets[lastPacketIndex].Data.ToString();
-                Debug.Log(value);				
+                var value = item.Value.packets[lastPacketIndex].Data[0].ToString();
+                Debug.Log(value);
 			}
 		}
         // Debug.Log(Time.deltaTime);
