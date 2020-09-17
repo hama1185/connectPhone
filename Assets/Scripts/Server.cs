@@ -35,15 +35,18 @@ public class Server : MonoBehaviour {
 
     void LateUpdate(){
         foreach( KeyValuePair<string, ServerLog> item in servers ){
-			// If we have received at least one packet,
-			// show the last received from the log in the Debug console
-            
+			
 			if(item.Value.log.Count > 0){
                 // b.text = "value get";
 				int lastPacketIndex = item.Value.packets.Count - 1;
-                
-                var value = item.Value.packets[lastPacketIndex].Data[0].ToString();
-                Debug.Log(value);
+                var address = item.Value.packets[lastPacketIndex].Address.ToString();
+                if(address.Contains("/4/multitoggle/")){
+                    var value = item.Value.packets[lastPacketIndex].Data[0].ToString().Replace("/4/multitoggle/","");
+                    string[] xy = value.Split('/');
+                    int x = int.Parse(xy[0]);
+                    int y = int.Parse(xy[1]);
+                    
+                }
 			}
 		}
         // Debug.Log(Time.deltaTime);
