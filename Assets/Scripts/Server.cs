@@ -41,11 +41,18 @@ public class Server : MonoBehaviour {
 				int lastPacketIndex = item.Value.packets.Count - 1;
                 var address = item.Value.packets[lastPacketIndex].Address.ToString();
                 if(address.Contains("/4/multitoggle/")){
-                    var value = item.Value.packets[lastPacketIndex].Data[0].ToString().Replace("/4/multitoggle/","");
-                    string[] xy = value.Split('/');
+                    var position = item.Value.packets[lastPacketIndex].Address.ToString().Replace("/4/multitoggle/","");
+                    string[] xy = position.Split('/');
                     int x = int.Parse(xy[0]);
                     int y = int.Parse(xy[1]);
-                    
+                    GameObject line = GameObject.Find("line"+xy[1]);
+                    var pannel = line.transform.GetChild(x);
+                    if(item.Value.packets[lastPacketIndex].Data[0].ToString() == "1"){
+                        pannel.gameObject.SetActive(true);
+                    }
+                    else{
+                        pannel.gameObject.SetActive(false);
+                    }
                 }
 			}
 		}
