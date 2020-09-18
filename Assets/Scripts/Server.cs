@@ -45,8 +45,8 @@ public class Server : MonoBehaviour {
                     string[] xy = position.Split('/');
                     int x = int.Parse(xy[0]);
                     int y = int.Parse(xy[1]);
-                    GameObject line = GameObject.Find("line"+xy[1]);
-                    var pannel = line.transform.GetChild(x);
+                    GameObject line = GameObject.Find("line" + xy[1]);
+                    var pannel = line.transform.GetChild(x - 1);
                     if(item.Value.packets[lastPacketIndex].Data[0].ToString() == "1"){
                         pannel.gameObject.SetActive(true);
                     }

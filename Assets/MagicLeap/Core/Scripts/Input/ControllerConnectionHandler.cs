@@ -92,7 +92,6 @@ namespace UnityEngine.XR.MagicLeap
                 Debug.LogErrorFormat("Error: ControllerConnectionHandler._devicesAllowed is invalid, disabling script.");
                 enabled = false;
                 return;
-
             }
 
             bool requestCFUID = DevicesAllowed.HasFlag(DeviceTypesAllowed.ControllerLeft) ||
